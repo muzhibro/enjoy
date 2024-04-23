@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="../static/index.css">
+     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>任务管理器</h1>
+        </header>
+
+        <section class="add-member">
+            <h2>添加成员</h2>
+            <form action="{{ url_for('add_member') }}" method="post">
+                <label for="name">名字:</label>
+                <input type="text" id="name" name="name" class="input-field" required>
+                <button type="submit">添加</button>
+            </form>
+        </section>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <hr>
+
+        <section class="create-task">
+            <h2>创建任务</h2>
+            <form action="{{ url_for('create') }}" method="post">
+                <label for="title">标题:</label>
+                <input type="text" id="title" name="title" class="input-field" required>
+
+                <label for="description">描述:</label>
+                <textarea id="description" name="description" class="input-field" required></textarea>
+
+                <label for="deadline">截止日期:</label>
+                <input type="date" id="deadline" name="deadline" class="input-field" required>
+
+                <div class="form-group">
+                    <label for="assigned_to">负责人:</label>
+                    <select id="assigned_to" name="assigned_to" class="assigned-to" required>
+                        {% for member in team_members %}
+                            <option value="{{ member.name }}">{{ member.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="priority">优先级:</label>
+                    <select id="priority" name="priority" class = "priority" required>
+                        <option value="High">高</option>
+                        <option value="Medium">中</option>
+                        <option value="Low">低</option>
+                    </select>
+                </div>
+
+                <button type="submit">创建任务</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <section class="tasks">
+            <h2>任务列表<span class="collapse-btn" onclick="toggleCollapse('tasks')">▼</span></h2>
+            <ul>
+                {% for task in tasks %}
+                    <li>
+                        <strong>{{ task.title }}</strong><br>
+                        <p>描述: {{ task.description }}</p>
+                        <p>截止日期: {{ task.deadline }}</p>
+                        <p>负责人: {{ task.assigned_to }}</p>
+                        <p>优先级: {{ task.priority }}</p>
+                        <p>状态: {{ task.status }}</p>
+                        {% if task.completed %}
+                            <span class="completed">Completed</span>
+
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="team-members">
+            <h2>组员<span class="collapse-btn" onclick="toggleCollapse('team-members')">▼</span></h2>
+            <ul>
+                {% for member in team_members %}
+                    <li>{{ member.name }} | <a href="#" class="delete" onclick="confirmDeleteMember('{{ member.name }}')">删除</a></li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <footer>
+            <a href="{{ url_for('all_tasks') }}"><button>查看所有任务</button></a>
+            <a href="{{ url_for('logout') }}"><button>登出</button></a>
+        </footer>
+    </div>
+
+    <script>
+        function toggleCollapse(sectionId) {
+            var section = document.querySelector('.' + sectionId);
+            section.classList.toggle('collapsed');
+        }
+    </script>
+</body>
+</html>

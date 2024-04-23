@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>注册</h1>
+        {% if show_dialog %}
+        <script>
+            if (confirm('注册成功。是否跳转到登录页面？')) {
+                window.location.href = "{{ url_for('login') }}";
+            } else {
+                window.location.href = "{{ url_for('register') }}";
+            }
+        </script>
+        {% endif %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('register') }}" method="POST">
+         <label for="username"></label><input type="text" id="username" name="username" placeholder="用户名" required>
+            <label for="password"></label><input type="password" id="password" name="password" placeholder="密码" required>
+            <button type="submit"class="btn btn-primary">注册</button>
+        </form>
+        <p>已有账号？<a href="{{ url_for('login') }}">点击登录</a></p>
+    </div>
+</body>
+</html>

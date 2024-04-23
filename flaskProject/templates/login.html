@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户管理</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>用户登录</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <form action="{{ url_for('login') }}" method="POST">
+            <label for="username"></label><input type="text" id="username" name="username" placeholder="用户名" required>
+            <label for="password"></label><input type="password" id="password" name="password" placeholder="密码" required>
+            <button type="submit" class="btn btn-primary">登录</button>
+        </form>
+        <a href="{{ url_for('register') }}" class="register-link">没有账号？点击注册</a>
+    </div>
+</body>
+</html>

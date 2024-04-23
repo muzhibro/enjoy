@@ -1,0 +1,145 @@
+body {
+            background-image: url('header-background.jpg');
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: rgba(188, 196, 198, 0);
+            margin: 0;
+            padding: 0;
+            color: rgba(51, 114, 153, 0.7);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(51, 99, 153, 0.66);
+            overflow-y: auto; /* 添加垂直滚动条 */
+        }
+
+        h1 {
+            color: #0095ff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .task-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .task-item {
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .task-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .task-details {
+            padding: 20px;
+        }
+
+        .task-details h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .task-details p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        select {
+            padding: 8px;
+            font-size: 1rem;
+        }
+
+        .button-container {
+            display: flex; /* 使用 Flexbox 布局 */
+            justify-content: space-between; /* 平均分配空间 */
+            align-items: center; /* 垂直居中 */
+            margin-top: 20px;
+        }
+
+        .button-container button,
+        .button-container .delete-link {
+            height: 26px; /* 将按钮高度设置为30px */
+            padding: 12px 24px; /* 调整按钮内边距 */
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: bold;
+            white-space: nowrap; /* 不换行 */
+            overflow: hidden; /* 超出部分隐藏 */
+            text-overflow: ellipsis; /* 超出部分显示省略号 */
+        }
+        .button-container button.status-button {
+            height: 50px; /* 将按钮高度设置为50px，保持一致 */
+            padding: 12px 24px; /* 调整按钮内边距，使之保持一致 */
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: bold;
+            white-space: nowrap; /* 不换行 */
+            overflow: hidden; /* 超出部分隐藏 */
+            text-overflow: ellipsis; /* 超出部分显示省略号 */
+        }
+
+        .button-container button:hover,
+        .button-container .delete-link:hover {
+            background-color: #0056b3;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #0056b3;
+        }
+
+        /* 自定义滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>所有任务</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='alltask.css') }}">
+    <style>
+        /* 去掉列表项的标记样式 */
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        /* 搜索框和按钮样式 */
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-container input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        .search-container button {
+            padding: 8px 16px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>所有任务</h1>
+
+        <!-- 搜索框和按钮 -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="输入搜索内容">
+            <button id="search-button">搜索</button>
+            <button id="reset-button">重置</button> <!-- 新增的重置按钮 -->
+        </div>
+
+        <ul class="task-list">
+            {% for task in tasks %}
+            <li class="task-item">
+                <div class="task-details searchable">
+                    <h2>{{ task.title }}</h2>
+                    <p class="searchable"><strong>描述：</strong> {{ task.description }}</p>
+                    <p class="searchable"><strong>截止日期：</strong> {{ task.deadline }}</p>
+                    <p class="searchable"><strong>分配给：</strong> <span class="assigned-to">{{ task.assigned_to }}</span></p>
+                    <p class="searchable"><strong>优先级：</strong> {{ task.priority }}</p>
+                    <p class="searchable"><strong>状态：</strong>
+                        <select id="status_{{ task.id }}" class="searchable">
+                            <option value="进行中" {% if task.status == '进行中' %}selected{% endif %}>进行中</option>
+                            <option value="已完成" {% if task.status == '完成' %}selected{% endif %}>完成</option>
+                            <option value="延迟" {% if task.status == '延迟' %}selected{% endif %}>延迟</option>
+                        </select>
+                    </p>
+                    <div class="button-container">
+                        <button class="status-button" onclick="confirmUpdateTaskStatus({{ task.id }})">确认更改</button>
+                        <a href="#" class="delete-link" onclick="confirmDelete({{ task.id }})">删除任务</a>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('home') }}" class="back-link">返回主页</a>
+    </div>
+
+    <!-- 引入外部 JavaScript 文件 -->
+    <script src="{{ url_for('static', filename='alltask.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

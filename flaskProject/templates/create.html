@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+</head>
+<body>
+    <h1>Create New Task</h1>
+    <form action="{{ url_for('create') }}" method="post">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required></textarea><br><br>
+        <label for="deadline">Deadline:</label><br>
+        <input type="date" id="deadline" name="deadline" required><br><br>
+        <label for="assigned_to">Assigned To:</label><br>
+        <select id="assigned_to" name="assigned_to" required>
+            {% for member in team_members %}
+                <option value="{{ member.name }}">{{ member.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority" required>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select><br><br>
+        <label for="reminder">Reminder:</label>
+        <select id="reminder" name="reminder">
+            <option value="1">1 day before deadline</option>
+            <option value="2">2 days before deadline</option>
+            <option value="3">3 days before deadline</option>
+            <option value="0">No reminder</option>
+        </select><br><br>
+        <button type="submit">Create Task</button>
+    </form>
+</body>
+</html>

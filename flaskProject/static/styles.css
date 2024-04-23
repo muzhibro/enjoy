@@ -1,0 +1,78 @@
+body {
+    padding: 40px 0;
+    background-image: url('header-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    height: 100vh; /* 使容器铺满整个视口 */
+    color: black; /* 将文字颜色改为黑色 */
+    overflow: hidden; /* 隐藏滚动条 */
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: black; /* 将标题颜色改为黑色 */
+    text-align: center;
+}
+
+form label {
+    font-weight: bold;
+    font-size: 16px;
+    color: black; /* 将表单标签颜色改为黑色 */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 24px); /* 让输入框等宽，减去边框和内边距的宽度 */
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black; /* 将输入框边框颜色改为黑色 */
+    color: black; /* 将输入框文字颜色改为黑色 */
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid black; /* 将按钮边框颜色改为黑色 */
+    color: black; /* 将按钮文字颜色改为黑色 */
+    cursor: pointer; /* 鼠标悬停样式 */
+    transition: background-color 0.3s, border-color 0.3s; /* 添加过渡效果 */
+}
+
+.btn-primary:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.register-link {
+    font-size: 14px;
+    margin-top: 10px;
+    color: black; /* 将注册链接颜色改为黑色 */
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
